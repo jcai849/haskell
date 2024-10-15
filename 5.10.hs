@@ -5,7 +5,6 @@ minCaseBound c
   | isUpper c = 'A'
 
 -- clb: case lower bound ('a' or 'A' in English)
-
 letcase2int :: Char -> Char -> Int
 letcase2int clb c = ord c - ord clb
 

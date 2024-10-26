@@ -1,3 +1,4 @@
+
 data Op = Add | Sub | Mul | Div
 
 instance Show Op where
@@ -76,6 +77,8 @@ solutions :: [Int] -> Int -> [Expr]
 solutions ns n =
   [e | ns' <- choices ns, e <- exprs ns', eval e == [n]]
 
-{-
-Answer: makes it non-terminating; expr's will keep splitting forever
--}
+vals :: [Int]
+vals = [1, 3, 7, 10, 25, 50]
+
+n_exprs = sum . map (length . exprs) . choices $ vals
+n_evals = length [x | y <- choices vals, z <- exprs y, x <- eval z]

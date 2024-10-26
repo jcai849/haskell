@@ -1,3 +1,4 @@
+
 data Op = Add | Sub | Mul | Div
 
 instance Show Op where
@@ -8,9 +9,9 @@ instance Show Op where
 
 valid :: Op -> Int -> Int -> Bool
 valid Add _ _ = True
-valid Sub x y = x > y
+valid Sub _ _ = True
 valid Mul _ _ = True
-valid Div x y = x `mod` y == 0
+valid Div x y = y /= 0 && x `mod` y == 0 
 
 apply :: Op -> Int -> Int -> Int
 apply Add x y = x + y
@@ -76,6 +77,8 @@ solutions :: [Int] -> Int -> [Expr]
 solutions ns n =
   [e | ns' <- choices ns, e <- exprs ns', eval e == [n]]
 
-{-
-Answer: makes it non-terminating; expr's will keep splitting forever
--}
+vals :: [Int]
+vals = [1, 3, 7, 10, 25, 50]
+
+n_exprs = sum . map (length . exprs) . choices $ vals
+n_evals = length [x | y <- choices vals, z <- exprs y, x <- eval z]

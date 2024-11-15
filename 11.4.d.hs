@@ -153,12 +153,12 @@ alphabeta_inner []     X m _ acc = (acc, m)
 alphabeta_inner []     O _ m acc = (acc, m)
 alphabeta_inner (g:gs) X a b acc | m >= b    = (acc, m) 
                                  | otherwise = alphabeta_inner gs X m b acc'
-                         where (ts, t) = alphabeta g X m b
+                         where (ts, t) = alphabeta g X a b
                                acc'    = ts : acc
                                m       = if t > a then t else a
 alphabeta_inner (g:gs) O a b acc | m <= a    = (acc, m) 
                                  | otherwise = alphabeta_inner gs O a m acc'
-                         where (ts, t) = alphabeta g O a m
+                         where (ts, t) = alphabeta g O a b
                                acc'    = ts : acc
                                m       = if t < b then t else b
 
@@ -192,7 +192,7 @@ bestmove :: Grid -> Player -> Grid
 bestmove g p = head [g' | Node (g',p') _ <- ts, p' == best]
                where 
                   tree = gametree g p
-                  Node (_,best) ts = minimax tree
+                  Node (_,best) ts =  minimax tree
 
 -- Human vs computer
 

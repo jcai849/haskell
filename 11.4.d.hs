@@ -6,6 +6,7 @@
 import Data.Char
 import Data.List
 import System.IO
+import Debug.Trace
 
 size :: Int
 size = 3
@@ -136,8 +137,13 @@ data Tree a = Node a [Tree a]
 gametree :: Grid -> Player -> Tree Grid
 gametree g p = g' where (g', _) = alphabeta g p O X
 
+winner :: Grid -> Player
+winner g | wins O g = O
+         | wins X g = X
+         | full   g = B
+
 alphabeta :: Grid -> Player -> Player -> Player -> (Tree Grid, Player)
-alphabeta g p a b | null successors = (Node g [], p)
+alphabeta g p a b | null successors = (Node g [], winner g)
                   | otherwise       = (Node g ts, m)
                    where (ts, m)    = alphabeta_inner successors (next p) a b []
                          successors = moves g p
@@ -185,7 +191,7 @@ minimax (Node g ts)
 bestmove :: Grid -> Player -> Grid
 bestmove g p = head [g' | Node (g',p') _ <- ts, p' == best]
                where 
-                  tree = prune depth (gametree g p)
+                  tree = gametree g p
                   Node (_,best) ts = minimax tree
 
 -- Human vs computer
@@ -199,6 +205,7 @@ play g p = do cls
               goto (1,1)
               putGrid g
               play' g p
+
 
 play' :: Grid -> Player -> IO ()
 play' g p

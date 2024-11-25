@@ -1,0 +1,74 @@
+strict digraph G {
+
+    expr1 -> {term1 plus1 expr2}
+    term1 -> factor1 -> nat1 -> two1
+    expr2 -> term2 -> factor2 -> nat2 -> three1
+
+    expr3 -> term3 -> {factor3 times1 term4}
+    factor3 -> nat3 -> two2
+    term4 -> {factor4 times2 term5}
+    factor4 -> nat4 -> three2
+    term5 -> factor5 -> nat5 -> four1
+
+    expr4 -> {term6 plus2 expr5}
+    term6 -> factor6 -> {lbrackets expr6 rbrackets}
+    expr6 -> {term7 plus3 expr7}
+    term7 -> factor7 -> nat6 -> two3
+    expr7 -> term8 -> factor8 -> nat7 -> three3
+    expr5 -> term9 -> factor9 -> nat8 -> four2
+
+    expr1 [label="expr"]
+    expr2 [label="expr"]
+    expr3 [label="expr"]
+    expr4 [label="expr"]
+    expr5 [label="expr"]
+    expr6 [label="expr"]
+    expr7 [label="expr"]
+
+    term1 [label="term"]
+    term2 [label="term"]
+    term3 [label="term"]
+    term4 [label="term"]
+    term5 [label="term"]
+    term6 [label="term"]
+    term7 [label="term"]
+    term8 [label="term"]
+    term9 [label="term"]
+
+    factor1 [label="factor"]
+    factor2 [label="factor"]
+    factor3 [label="factor"]
+    factor4 [label="factor"]
+    factor5 [label="factor"]
+    factor6 [label="factor"]
+    factor7 [label="factor"]
+    factor8 [label="factor"]
+    factor9 [label="factor"]
+
+    nat1 [label="nat"]
+    nat2 [label="nat"]
+    nat3 [label="nat"]
+    nat4 [label="nat"]
+    nat5 [label="nat"]
+    nat6 [label="nat"]
+    nat7 [label="nat"]
+    nat8 [label="nat"]
+
+    two1 [label="2"]
+    two2 [label="2"]
+    two3 [label="2"]
+    three1 [label="3"]
+    three2 [label="3"]
+    three3 [label="3"]
+    four1 [label="4"]
+    four2 [label="4"]
+
+    plus1 [label="+"]
+    plus2 [label="+"]
+    plus3 [label="+"]
+    times1 [label="*"]
+    times2 [label="*"]
+    lbrackets [label="("]
+    rbrackets [label=")"]
+}
+

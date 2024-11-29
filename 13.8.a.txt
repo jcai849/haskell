@@ -1,0 +1,4 @@
+expr   ::= term (+ expr | - expr | e)
+term   ::= factor (* term | / term | e)
+factor ::= - factor | ( expr ) | nat
+nat    ::= 0 | 1 | 2 | ...

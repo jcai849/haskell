@@ -1,0 +1,17 @@
+fst (1+2,2+3)
+
+Innermost:
+
+fst (1+2,2+3)
+fst (3,2+3)
+fst (3,5)
+3
+
+Outermost:
+
+fst (1+2,2+3)
+1+2
+3
+
+
+Second argument doesn't require evaluation

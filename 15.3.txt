@@ -1,0 +1,9 @@
+mult 3 4
+ => substituting mult
+(\x -> (\y -> x * y)) 3 4
+ => applying lambda
+(\y -> 3 * y) 4
+ => applying lambda
+3 * 4
+ => Multiplication
+12
